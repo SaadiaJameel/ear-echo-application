@@ -197,6 +197,7 @@ import com.example.login.R;
 import com.example.login.model.SemesterModel;
 import com.example.login.net.addSemService;
 import com.example.login.retrofit.RetroFitService;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 import java.util.*;
@@ -218,13 +219,15 @@ public class SemesterAllStudent extends AppCompatActivity implements View.OnClic
     static int semNumToPass;
     static int semIdClicked;
 
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_semester_all_student);
 
         int field = MainActivity.s.getFieldgroup();
-
+        mAuth= FirebaseAuth.getInstance();
         //use retrofit service
         RetroFitService retrofit = new RetroFitService();
 
@@ -270,40 +273,45 @@ public class SemesterAllStudent extends AppCompatActivity implements View.OnClic
 
             ImageButton refresh = findViewById(R.id.refresh);
             refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-        if(length != 0){
-            for(int i = 0 ; i <length ; ++i){
-                layout.removeView(btns[i]);
-            }
-        }
-
-        semapi.getSemesters(field)
-                .enqueue(new Callback<List<SemesterModel>>() {
-                    @Override
-                    public void onResponse(Call<List<SemesterModel>> call, Response<List<SemesterModel>> response) {
-
-                        List<SemesterModel> myheroList = response.body();
-                        length = myheroList.size();
-                        btns = new Button[length];
-
-                        for (int i = 0 ;  i < length ;  i++) {
-//                                    semNumber = myheroList.get(i).getSemnumber();
-                            semNumber = myheroList.get(i).getId();
-                            String semNumberStr = "Semester " + myheroList.get(i).getSemnumber();;
-                            refreshPage(semNumberStr, i);
-                        }
-
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<SemesterModel>> call, Throwable t) {
-
-                    }
-                });
-            }
-        });
+                @Override
+                public void onClick(View v){
+                    mAuth.signOut();
+                    backtoMain();
+                }
+//                @Override
+//                public void onClick(View v) {
+//
+//                if(length != 0){
+//                    for(int i = 0 ; i <length ; ++i){
+//                        layout.removeView(btns[i]);
+//                    }
+//                }
+//
+//                semapi.getSemesters(field).enqueue(new Callback<List<SemesterModel>>() {
+//                    @Override
+//                    public void onResponse(Call<List<SemesterModel>> call, Response<List<SemesterModel>> response) {
+//
+//                        List<SemesterModel> myheroList = response.body();
+//                        length = myheroList.size();
+//                        btns = new Button[length];
+//
+//                        for (int i = 0 ;  i < length ;  i++) {
+////                                    semNumber = myheroList.get(i).getSemnumber();
+//                            semNumber = myheroList.get(i).getId();
+//                            String semNumberStr = "Semester " + myheroList.get(i).getSemnumber();;
+//                            refreshPage(semNumberStr, i);
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<SemesterModel>> call, Throwable t) {
+//
+//                    }
+//                });
+//                }
+            });
 
 //        for(int j = 0 ; j < length ; ++j){
 //            Button btn = findViewById(j);
@@ -357,6 +365,11 @@ public class SemesterAllStudent extends AppCompatActivity implements View.OnClic
         Button button = (Button) findViewById(v.getId());
         semNumToPass = button.getId();
         openCoursePage();
+    }
+
+    public void backtoMain(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
 

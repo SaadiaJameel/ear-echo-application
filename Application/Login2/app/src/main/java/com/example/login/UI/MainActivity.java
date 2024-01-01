@@ -1,9 +1,11 @@
 package com.example.login.UI;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,17 +14,12 @@ import com.example.login.R;
 import com.example.login.model.StudentModel;
 import com.example.login.net.studentService;
 import com.example.login.retrofit.RetroFitService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +31,19 @@ public class MainActivity extends AppCompatActivity {
     MaterialButton signin;
     MaterialButton signupbtn;
 
+    FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null){
+            openSemesterAll();
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
         signin = (MaterialButton) findViewById(R.id.signinbtn);
         signupbtn = (MaterialButton) findViewById(R.id.signupbtn);
+        mAuth= FirebaseAuth.getInstance();
+
 
         //use retrofit service
         RetroFitService retrofit = new RetroFitService();
@@ -58,30 +70,56 @@ public class MainActivity extends AppCompatActivity {
                 uname = username.getText().toString();
                 pswd = password.getText().toString();
 
-                studentapi.getStudent(uname)
-                        .enqueue(new Callback<StudentModel>() {
+                // Check if email and password are empty or not
+                if(TextUtils.isEmpty(uname)){
+                    Toast.makeText(MainActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(TextUtils.isEmpty(pswd)){
+                    Toast.makeText(MainActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(uname, pswd)
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
-                            public void onResponse(Call<StudentModel> call, Response<StudentModel> response) {
-
-                                if(!response.isSuccessful()){
-                                    Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                }else {
-                                    s=(StudentModel)response.body();
-
-                                    if(s.getPassword().equals(pswd)){
-                                        Toast.makeText(MainActivity.this, "Login Succesfull!", Toast.LENGTH_SHORT).show();
-
-                                        openSemesterAll();
-                                    }else{
-                                        Toast.makeText(MainActivity.this, "Incorrect Password!", Toast.LENGTH_SHORT).show();
-                                    }
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(MainActivity.this, "Login successful.",
+                                            Toast.LENGTH_SHORT).show();
+                                    openNavView();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Authentication failed.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            @Override
-                            public void onFailure(Call<StudentModel> call, Throwable t) {
-                                Toast.makeText(MainActivity.this, "No response", Toast.LENGTH_SHORT).show();
-                            }
                         });
+
+//                studentapi.getStudent(uname)
+//                        .enqueue(new Callback<StudentModel>() {
+//                            @Override
+//                            public void onResponse(Call<StudentModel> call, Response<StudentModel> response) {
+//
+//                                if(!response.isSuccessful()){
+//                                    Toast.makeText(MainActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+//                                }else {
+//                                    s=(StudentModel)response.body();
+//
+//                                    if(s.getPassword().equals(pswd)){
+//                                        Toast.makeText(MainActivity.this, "Login Succesfull!", Toast.LENGTH_SHORT).show();
+//
+//                                        openSemesterAll();
+//                                    }else{
+//                                        Toast.makeText(MainActivity.this, "Incorrect Password!", Toast.LENGTH_SHORT).show();
+//                                    }
+//                                }
+//                            }
+//                            @Override
+//                            public void onFailure(Call<StudentModel> call, Throwable t) {
+//                                Toast.makeText(MainActivity.this, "No response", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
             }
         });
 
@@ -100,6 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openSemesterAll(){
         Intent intent = new Intent(this, SemesterAllStudent.class);
+        startActivity(intent);
+    }
+
+    public void openNavView(){
+        Intent intent = new Intent(this, NavigationView.class);
         startActivity(intent);
     }
 

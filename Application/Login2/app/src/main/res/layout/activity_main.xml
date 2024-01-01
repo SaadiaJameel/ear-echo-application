@@ -18,7 +18,7 @@
             android:layout_marginEnd="87dp"
             android:layout_marginBottom="468dp"
             android:gravity="center"
-            android:text="GPA Calculator"
+            android:text="Ear Echo"
             android:textColor="@color/white"
             android:textSize="35dp"
             android:textStyle="bold" />
@@ -33,7 +33,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:background="#30ffffff"
-            android:hint="Username"
+            android:hint="Email"
             android:padding="15dp"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
