@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.login.R;
@@ -36,6 +37,10 @@ public class NavigationView extends AppCompatActivity {
                 case R.id.settings:
                     replaceFragment(new SettingsFragment());
                     break;
+
+                case R.id.configure:
+                    replaceFragment(new ConfigureFragment());
+                    break;
             }
 
 
@@ -51,4 +56,10 @@ public class NavigationView extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
+
+    public void replaceView(Intent intent){
+        startActivity(intent);
+    }
+
+
 }
