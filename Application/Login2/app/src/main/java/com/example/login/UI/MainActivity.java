@@ -39,8 +39,12 @@ public class MainActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null){
+//            testView();
             openNavView();
         }
+//        else{
+//            openNavView();
+//        }
     }
 
 
@@ -145,6 +149,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NavigationView.class);
         startActivity(intent);
     }
+
+
 
 //    public void openSettings(){
 //        Intent intent = new Intent(this, SemesterAllStudent.class);

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
+    id 'com.chaquo.python'
 }
 
 android {
@@ -9,6 +10,13 @@ android {
 
     defaultConfig {
         applicationId "com.example.login"
+        sourceSets {
+            main{
+                python{
+                    srcDirs= ["src/main/python"]
+                }
+            }
+        }
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -18,6 +26,19 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        ndk{
+            abiFilters "armeabi-v7a", "x86"
+        }
+//        python{
+////            buildPython "C:/path/to/python.exe"
+//            pip{
+//                install "numpy"
+//                install "matplotlib"
+//                install "pandas"
+//                install "scipy"
+//                install "scikit-learn"
+//            }
+//        }
     }
 
     buildTypes {
@@ -80,4 +101,19 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+
 }
+
+chaquopy {
+    defaultConfig {
+//        buildPython("C:/path/to/python.exe")
+//        buildPython("C:/path/to/py.exe", "-3.8")
+        pyc{
+            src= false;
+        }
+    }
+    productFlavors { }
+    sourceSets { }
+}
+

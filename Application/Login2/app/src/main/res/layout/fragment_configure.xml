@@ -31,34 +31,26 @@
         android:text="Hello there!"
         android:textSize="17dp"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="153dp"
-        style="@style/CardView.Dark"/>
+        android:layout_marginLeft="150dp"
+        style="@style/CardView.Dark"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/line1"
         android:layout_below="@+id/greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please help set your device up by following the"
+        android:text="Please help set your device up by following the video."
         android:textSize="17dp"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="26dp"
+        android:gravity="center_horizontal"
         style="@style/CardView.Dark"/>
 
-    <TextView
-        android:id="@+id/line2"
-        android:layout_below="@+id/line1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="video."
-        android:textSize="17dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginLeft="180dp"
-        style="@style/CardView.Dark"/>
+
     
     <VideoView
         android:id="@+id/video"
-        android:layout_below="@+id/line2"
+        android:layout_below="@+id/line1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
@@ -66,25 +58,25 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/video"
-        android:layout_marginLeft="158dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="-65dp"
+        android:src="@drawable/baseline_smart_display_24"
         android:text="Play" />
 
-    <Button
+    <ImageButton
         android:id="@+id/stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="34dp"
+        android:layout_height="30dp"
         android:layout_below="@+id/play"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="5dp"
-        android:text="Stop"
-        android:textSize="13dp"
-        android:backgroundTint="#be0000"/>
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="-37dp"
+        android:layout_toRightOf="@+id/play"
+        android:src="@drawable/stop_btn" />
 
 
 </RelativeLayout>

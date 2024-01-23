@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context=".UI.Bluetooth">
+
+    <!--  Display whether bluetooth is available or not  -->
+    <TextView
+        android:id="@+id/statusBluetoothTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#000"/>
+
+    <!--  Bluetooth icon (on/off)  -->
+    <ImageView
+        android:id="@+id/bluetoothIv"
+        android:layout_width="200dp"
+        android:layout_height="200dp"/>
+
+    <Button
+        android:id="@+id/onBtn"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn On"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"/>
+
+    <Button
+        android:id="@+id/offBtn"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn Off"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"/>
+
+    <Button
+        android:id="@+id/discoverableBtn"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Discoverable"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"/>
+
+    <Button
+        android:id="@+id/pairedBtn"
+        android:minWidth="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get Paired Devices"
+        style="@style/TextAppearance.AppCompat.Widget.Button.Colored"/>
+
+<!--    <Button-->
+<!--        android:id="@+id/StartConnectionBtn"-->
+<!--        android:minWidth="200dp"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="StartConnection"/>-->
+
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="180dp">-->
+<!--        <EditText-->
+<!--            android:layout_width="250dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Enter text here"-->
+<!--            android:id="@+id/editText"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+<!--        <Button-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="SEND"-->
+<!--            android:id="@+id/SendBtn"-->
+<!--            android:layout_toRightOf="@+id/editText"-->
+<!--            android:layout_marginTop="10dp"/>-->
+
+<!--    </RelativeLayout>-->
+
+
+    <TextView
+        android:id="@+id/pairedTv"
+        android:minWidth="200dp"
+        android:text=""
+        android:textColor="#000"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+</LinearLayout>

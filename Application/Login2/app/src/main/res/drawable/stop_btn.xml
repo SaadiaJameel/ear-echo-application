@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<vector xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    android:width="24dp"-->
+<!--    android:height="24dp"-->
+<!--    android:viewportWidth="24.0"-->
+<!--    android:viewportHeight="24.0">-->
+<!--    <path-->
+<!--        android:fillColor="#FF0000"-->
+<!--        android:pathData="M6 6h12v12H6z"/>-->
+<!--</vector>-->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background red square with rounded corners -->
+    <item android:left="-130dp" android:right="-130dp" android:top="-130dp" android:bottom="-130dp">
+
+        <shape android:shape="rectangle">
+            <solid android:color="#DF4D4D" /> <!-- Red color -->
+            <corners android:radius="16dp" /> <!-- Adjust the radius for rounded corners -->
+        </shape>
+    </item>
+
+    <!-- White outline for the inner square -->
+    <item android:left="120dp" android:right="120dp" android:top="120dp" android:bottom="120dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF" /> <!-- White color -->
+            <corners android:radius="16dp"/>
+            <stroke
+                android:width="20dp"
+                android:color="@color/white"/>
+        </shape>
+    </item>
+
+</layer-list>
+
+<!--&lt;!&ndash; res/drawable/red_square_with_border.xml &ndash;&gt;-->
+<!--<layer-list xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--    &lt;!&ndash; Background red square with rounded corners &ndash;&gt;-->
+<!--    <item>-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="#FF0000" /> &lt;!&ndash; Red color &ndash;&gt;-->
+<!--            <corners android:radius="16dp" /> &lt;!&ndash; Adjust the radius for rounded corners &ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    &lt;!&ndash; White border for the inner square &ndash;&gt;-->
+<!--    <item android:left="4dp" android:right="4dp" android:top="4dp" android:bottom="4dp">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="#00FFFFFF" /> &lt;!&ndash; Fully transparent, keeping only the border &ndash;&gt;-->
+<!--            <stroke-->
+<!--                android:width="4dp"/> &lt;!&ndash; Adjust the width of the white outline &ndash;&gt; &lt;!&ndash; White color &ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--</layer-list>-->
+
